@@ -1,5 +1,5 @@
 Array.newIsArray=function(arr){
-    return typeof arr === 'object' && !!arr.length;
+    return Object.prototype.toString.call(arr) === '[object Array]';
 }
 
 const arr=[1,2,3,4,5,6,7,8];
