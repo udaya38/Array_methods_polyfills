@@ -1,10 +1,15 @@
 Array.prototype.newSplice = function(start, deleteCount = 0, ...items) {
     let startArray = [];
     let endArray = [];
+    let splicedArray = []; // becoz splice returns the removed items
+
     if (start > this.length) return this;
     for (let i = 0; i < this.length; i++) {
         if (i < start) {
             startArray.push(this[i]);
+        }
+        if (i >= start && i < start + deleteCount) {
+            splicedArray.push(this[i]);
         }
         if (i >= start + deleteCount) {
             endArray.push(this[i]);
@@ -15,7 +20,7 @@ Array.prototype.newSplice = function(start, deleteCount = 0, ...items) {
     for (let i = 0; i < startArray.length; i++) {
         this[i] = startArray[i];
     }
-    return this;
+    return splicedArray;
 }
 
 const arr = [1, 2, 3, 4, 5, 6];
